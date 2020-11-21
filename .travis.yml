@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t apunia81/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t adarsh81/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true apunia81/react-test npm test
+  - docker run -e CI=true adarsh81/react-test npm test
 
 after_success:
-  - docker build -t apunia81/multi-client ./client
-  - docker build -t apunia81/multi-nginx ./nginx
-  - docker build -t apunia81/multi-server ./server
-  - docker build -t apunia81/multi-worker ./worker
+  - docker build -t adarsh81/multi-client ./client
+  - docker build -t adarsh81/multi-nginx ./nginx
+  - docker build -t adarsh81/multi-server ./server
+  - docker build -t adarsh81/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push apunia81/multi-client
-  - docker push apunia81/multi-nginx
-  - docker push apunia81/multi-server
-  - docker push apunia81/multi-worker
+  - docker push adarsh81/multi-client
+  - docker push adarsh81/multi-nginx
+  - docker push adarsh81/multi-server
+  - docker push adarsh81/multi-worker
